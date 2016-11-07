@@ -262,26 +262,12 @@ namespace DG.Tweening
         // Returns TRUE in case of success, FALSE in case of error (if safeMode is on)
         internal static bool OnTweenCallback(TweenCallback callback)
         {
-            if (DOTween.useSafeMode) {
-                try {
-                    callback();
-                } catch (Exception e) {
-                    Debugger.LogWarning("An error inside a tween callback was silently taken care of > " + e.Message + "\n\n" + e.StackTrace + "\n\n");
-                    return false; // Callback error
-                }
-            } else callback();
+            callback();
             return true;
         }
         internal static bool OnTweenCallback<T>(TweenCallback<T> callback, T param)
         {
-            if (DOTween.useSafeMode) {
-                try {
-                    callback(param);
-                } catch (Exception e) {
-                    Debugger.LogWarning("An error inside a tween callback was silently taken care of > " + e.Message);
-                    return false; // Callback error
-                }
-            } else callback(param);
+            callback(param);
             return true;
         }
 
